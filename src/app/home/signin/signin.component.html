@@ -1,19 +1,18 @@
 <h4 class="text-center">Login</h4>
 
-<form [formGroup]="loginForm" class="form mt-4">
+<form [formGroup]="loginForm" class="form mt-4" (submit)="login()">
 
     <div class="form-group">
-        <input
+        <input #userNameInput
             formControlName="userName" 
             class="form-control" 
             placeholder="user name" 
             autofocus>  
     </div>
-    <small
+    <bp-vmessage 
         *ngIf="loginForm.get('userName').errors?.required"
-        class="text-danger d-block mt-1 mb-2">
-        User name is required!
-    </small>
+        text="User name is required!">
+    </bp-vmessage>
 
     <div class="form-group">
         <input
@@ -22,11 +21,10 @@
             class="form-control" 
             placeholder="password">              
     </div>
-    <small
+    <bp-vmessage 
         *ngIf="loginForm.get('password').errors?.required"
-        class="text-danger d-block mt-1 mb-2">
-        Password is required!
-    </small>
+        text="Password is required!">
+    </bp-vmessage>
 
     <button
         [disabled]="loginForm.invalid" 
@@ -37,4 +35,4 @@
 
 </form>
 
-<p>Not a user?<a>Register now</a></p>
+<p>Not a user? <a [routerLink]="['signup']">Register now</a></p>
